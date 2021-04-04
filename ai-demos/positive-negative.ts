@@ -26,25 +26,14 @@ model.compile( {
 } );
 
 ( async () => {
-	// Generate dummy data.
 	const inputSampleData = tf.randomUniform( [ 20000, 1 ], -1, 1 );
-
 	const data = await inputSampleData.array() as number[][];
-
 	const expectedOutput = data.map( x => x[ 0 ] > 0 ? [ 1, 0 ] : [ 0, 1 ] );
-
 	const expectedResults = tf.tensor( expectedOutput, [ 20000, 2 ] );
 
-	// Train for 5 epochs with batch size of 32.
 	const info = await model.fit( inputSampleData, expectedResults, {
 		epochs: 30,
 		batchSize: 1000
-		// callbacks: {
-		// 	onBatchEnd: ( batch, logs ) => {
-		// 		console.log();
-		// 		console.log( 'Loss', logs!.loss );
-		// 	}
-		// }
 	} );
 
 	console.log( 'Final accuracy', info.history );
