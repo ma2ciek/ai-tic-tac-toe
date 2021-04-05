@@ -15,11 +15,10 @@ describe( 'Game', () => {
 			}
 		} );
 
-		it( 'should create history with one element - empty board', () => {
+		it( 'should create empty history', () => {
 			const currentGame = new Game();
 
-			expect( currentGame.getHistory() ).toHaveLength( 1 );
-			expect( currentGame.getHistory()[ 0 ] ).toEqual( currentGame.currentBoard );
+			expect( currentGame.getHistory() ).toEqual( [] );
 		} );
 	} );
 
